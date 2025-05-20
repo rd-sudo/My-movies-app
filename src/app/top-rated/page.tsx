@@ -4,10 +4,11 @@ import React, { useEffect, useState } from "react";
 import { getTopRatedMovies } from "@/services/movies/getTopRatedMovies";
 import MovieCard from "@/components/MovieCard";
 import Link from "next/link";
+import { Movie } from "@/types/movie";
 
 const TopRatedMoviesPage = () => {
   const [loading, setLoading] = useState(false);
-  const [movies, setMovies] = useState<any[]>([]);
+  const [movies, setMovies] = useState<Movie[]>([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -23,10 +24,11 @@ const TopRatedMoviesPage = () => {
         setMovies((prev) => [...prev, ...data.results]);
       }
       setHasMore(data.page < data.total_pages);
-    } catch (err: any) {
-      setError(err.message || "Error cargando películas");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Error cargando películas");
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   useEffect(() => {

@@ -24,8 +24,8 @@ const NowPlayingMovies = () => {
         setMovies((prev) => [...prev, ...data.results]);
       }
       setHasMore(data.page < data.total_pages);
-    } catch (err: any) {
-      setError(err.message || "Error cargando películas");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Error cargando películas");
     }
     setLoading(false);
   };

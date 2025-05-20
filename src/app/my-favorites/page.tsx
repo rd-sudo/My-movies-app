@@ -15,7 +15,7 @@ export default function FavoritesPage() {
     const fetchFavorites = async () => {
       setLoading(true);
       const results = await Promise.all(
-        favorites.map((id) => getMovieById(id))
+        favorites.map((id) => getMovieById(Number(id)))
       );
       setMovies(results);
       setLoading(false);

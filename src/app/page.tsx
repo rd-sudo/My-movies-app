@@ -6,11 +6,12 @@ import { getPopularMovies } from "@/services/movies/getPopularMovies";
 import { getTopRatedMovies } from "@/services/movies/getTopRatedMovies";
 import MovieCard from "@/components/MovieCard";
 import Link from "next/link";
+import { Movie } from "@/types/movie";
 
 export default function Home() {
-  const [nowPlaying, setNowPlaying] = useState<any[]>([]);
-  const [popular, setPopular] = useState<any[]>([]);
-  const [topRated, setTopRated] = useState<any[]>([]);
+  const [nowPlaying, setNowPlaying] = useState<Movie[]>([]);
+  const [popular, setPopular] = useState<Movie[]>([]);
+  const [topRated, setTopRated] = useState<Movie[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -26,7 +27,7 @@ export default function Home() {
         setPopular(pop.results.slice(0, 4));
         setTopRated(top.results.slice(0, 4));
       } catch (e) {
-        // Manejo de error opcional
+        console.error("Error fetching movies:", e);
       }
       setLoading(false);
     };
@@ -52,7 +53,7 @@ function Section({
   href,
 }: {
   title: string;
-  movies: any[];
+  movies: Movie[];
   href: string;
 }) {
   return (
