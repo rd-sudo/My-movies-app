@@ -4,10 +4,11 @@ import { useEffect, useState } from "react";
 import { getMovieById } from "@/services/movies/getMovieById";
 import MovieCard from "@/components/MovieCard";
 import Link from "next/link";
+import type { Movie } from "@/types/movie";
 
 export default function FavoritesPage() {
   const { favorites } = useFavorites();
-  const [movies, setMovies] = useState<any[]>([]);
+  const [movies, setMovies] = useState<Movie[]>([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
