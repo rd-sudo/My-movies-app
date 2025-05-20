@@ -24,8 +24,8 @@ const TopRatedMoviesPage = () => {
         setMovies((prev) => [...prev, ...data.results]);
       }
       setHasMore(data.page < data.total_pages);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Error cargando películas");
+    } catch {
+      setError("Error cargando películas");
     } finally {
       setLoading(false);
     }

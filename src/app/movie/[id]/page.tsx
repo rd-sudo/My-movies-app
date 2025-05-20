@@ -26,7 +26,7 @@ const MovieDetailPage = () => {
       try {
         const data = await getTopRatedMovies();
         setTopRated(data.results);
-      } catch (err) {
+      } catch {
         setError("Could not load top rated movies.");
       }
     };
@@ -35,8 +35,8 @@ const MovieDetailPage = () => {
       try {
         const data = await getMovieById(Number(id));
         setMovie(data);
-      } catch (err) {
-        setError("Could not load movie.");
+      } catch {
+        setError("Could not load top rated movies.");
       } finally {
         setLoading(false);
       }
