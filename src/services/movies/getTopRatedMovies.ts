@@ -5,5 +5,5 @@ export const getTopRatedMovies = async (page = 1) => {
   try {
     const { data } = await api.get(endpoint);
     return data;
-  } catch (error) {}
+  } catch {}
 };
