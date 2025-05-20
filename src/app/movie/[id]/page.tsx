@@ -5,13 +5,14 @@ import { useParams, useSearchParams } from "next/navigation";
 import { getMovieById } from "@/services/movies/getMovieById";
 import { useFavorites } from "@/hooks/useFavorites";
 import { getTopRatedMovies } from "@/services/movies/getTopRatedMovies";
+import type { Movie } from "@/types/movie";
 //import MoviesCarousel from "@/components/MoviesCarousel";
 
 const MovieDetailPage = () => {
   const { id } = useParams();
   const searchParams = useSearchParams();
   const from = searchParams.get("from");
-  const [movie, setMovie] = useState<any>();
+  const [movie, setMovie] = useState<Movie>();
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const { addFavorite, removeFavorite, isFavorite } = useFavorites();
