@@ -6,6 +6,7 @@ import { getMovieById } from "@/services/movies/getMovieById";
 import { useFavorites } from "@/hooks/useFavorites";
 import { getTopRatedMovies } from "@/services/movies/getTopRatedMovies";
 import type { Movie } from "@/types/movie";
+import type { Genre } from "@/types/movie";
 //import MoviesCarousel from "@/components/MoviesCarousel";
 
 const MovieDetailPage = () => {
@@ -17,7 +18,7 @@ const MovieDetailPage = () => {
   const [error, setError] = useState<string | null>(null);
   const { addFavorite, removeFavorite, isFavorite } = useFavorites();
   const isFav = id && typeof id === "string" ? isFavorite(id) : false;
-  const [topRated, setTopRated] = useState<any[]>([]);
+  const [topRated, setTopRated] = useState<Movie[]>([]);
 
   useEffect(() => {
     if (!id || typeof id !== "string") return;
@@ -72,7 +73,7 @@ const MovieDetailPage = () => {
           <p className="text-gray-700">{movie.overview}</p>
           {movie.genres && (
             <div className="flex flex-wrap gap-2 mt-2">
-              {movie.genres.map((genre: any) => (
+              {movie.genres.map((genre: Genre) => (
                 <span
                   key={genre.id}
                   className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-semibold"
