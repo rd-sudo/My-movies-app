@@ -96,7 +96,11 @@ const MovieDetailPage = () => {
             }`}
             onClick={() => {
               if (!id || typeof id !== "string") return;
-              isFav ? removeFavorite(id) : addFavorite(id);
+              if (isFav) {
+                removeFavorite(id);
+              } else {
+                addFavorite(id);
+              }
             }}
           >
             {isFav ? "Quitar de Favoritos" : "Agregar a Favoritos"}
